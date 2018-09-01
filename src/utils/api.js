@@ -11,6 +11,35 @@ const getArrivals = async (airport, date, startHour) => {
   return response.json();
 }
 
+const selectFields = (flights) => {
+  const { appendix, flightStatuses } = flights;
+  const { airlines, airports, equipments } = appendix;
+  const {
+    arrivalAirportFsCode,
+    departureAirportFsCode,
+    operationalTimes: {
+      publishedDeparture: {
+        dateLocal: departureDateLocal,
+      },
+      publishedArrival: {
+        dateLocal: arrivalDateLocal,
+      },
+      actualRunwayArrival: {
+        dateLocal: actualArrivalDateLocal = '',
+      } = {},
+      actualRunwayDeparture: {
+        dateLocal: actualDepartureDateLocal = '',
+      } = {},
+    } = {},
+    carrierFsCode,
+    flightNumber,
+    airportResources: {
+      arrivalTerminal = '-',
+      departureTerminal = '-',
+    } = {},
+  } = flight;
+}
+
 const formatDate = () => {
   const date = new Date();
   const year = date.getFullYear();
@@ -26,4 +55,9 @@ const getStartHour = () => {
   return date.getHours();
 }
 
-export { getArrivals, formatDate, getStartHour }
+const getFlightTime = (date) => {
+  const re = /(?<=T)[\w+.-][^:]*:[^:]*/;
+  return re.exec(date)[0]
+}
+
+export { getArrivals, formatDate, getStartHour, getFlightTime }
