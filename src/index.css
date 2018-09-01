@@ -3,3 +3,53 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+li {
+  list-style-type: none;
+}
+
+.flight-types {
+  display: flex;
+  justify-content: center;
+}
+
+.flight-types li {
+  margin: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.flight-table {
+  width: 80%;
+  margin: 0 30px;
+}
+
+.flight-table__header {
+  display: flex;
+}
+
+.flight-row {
+  padding: 20px 0;
+  display: flex;
+  border-bottom: 1px solid black;
+}
+
+.flight-row__time {
+  margin-right: 50px;
+}
+
+.flight-row__destination {
+  margin-right: 100px;
+
+}
+
+.flight-row__airline {
+  display: flex;
+  min-width: 125px;
+  width: 125px;
+  margin-right: 100px;
+}
+
+.flight-row__airline-name {
+  margin-right: 10px;
+}
