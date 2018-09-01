@@ -18,9 +18,4 @@ const getTimeFromIsoString = (isoDate) => {
   return `${hours}:${minutes < 10 ? `0${minutes}` : minutes}`;
 }
 
-const getFlightTime = (date) => {
-  const re = /(?<=T)[\w+.-][^:]*:[^:]*/;
-  return re.exec(date)[0]
-}
-
 export { getCurrentHour, getTimeFromIsoString, formatTodaysDate }
