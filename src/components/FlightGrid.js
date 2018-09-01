@@ -2,9 +2,12 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 
 import { getTimeFromIsoString } from '../utils/helpers';
+import { flightType } from '../constants';
 
 export default function FlightGrid({ flights, type }) {
+
   const { flightStatuses } = flights;
+  const { ARRIVAL } = flightType;
   return (
     <div className="flight-table">
       <div className="flight-table__header">
@@ -45,21 +48,21 @@ export default function FlightGrid({ flights, type }) {
             <div key={flightNumber} className="flight-row">
               <div className="flight-row__time">
                 {
-                  type === 'arr'
+                  type === ARRIVAL
                     ? getTimeFromIsoString(actualArrivalDateLocal)
                     : getTimeFromIsoString(actualDepartureDateLocal)
                 }
               </div>
               <div className="flight-row__time">
                 {
-                  type === 'arr'
+                  type === ARRIVAL
                     ? getTimeFromIsoString(arrivalDateLocal)
                     : getTimeFromIsoString(departureDateLocal)
                 }
               </div>
               <div className="flight-row__city">
                 {
-                  type === 'arr'
+                  type === ARRIVAL
                     ? departureAirport['city']
                     : arrivalAirport['city']
                 }
@@ -74,7 +77,7 @@ export default function FlightGrid({ flights, type }) {
               </div>
               <div className="flight-row__terminal">
                 {
-                  type === 'arr'
+                  type === ARRIVAL
                     ? arrivalTerminal
                     : departureTerminal
                 }

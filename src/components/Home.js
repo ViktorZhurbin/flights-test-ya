@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 
 import { getArrivals } from '../utils/api';
 import { getCurrentHour, formatTodaysDate } from '../utils/helpers'
+import { flightType } from '../constants';
+
 
 import SelectFlightType from './SelectFlightType';
 import FlightGrid from './FlightGrid';
 import Loading from './Loading';
 
-import mockData from '../utils/mockData';
+import mockArrivals from '../utils/mockArrivals';
+import mockDepartures from '../utils/mockDepartures';
 
 class Home extends Component {
   state = {

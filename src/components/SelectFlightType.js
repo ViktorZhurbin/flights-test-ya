@@ -1,11 +1,9 @@
 import React from 'react';
 
+import { flightTypeNamesRus } from '../constants';
+
 export default function SelectFlightType({ selectedFlightType, onSelect }) {
-  const flightTypes = ['arr', 'dep'];
-  const flightTypesOptions = {
-    'arr': 'Прилет',
-    'dep': 'Вылет'
-  }
+  const flightTypes = Object.keys(flightTypeNamesRus);
 
   return (
     <ul className="flight-types">
@@ -16,7 +14,7 @@ export default function SelectFlightType({ selectedFlightType, onSelect }) {
             onClick={() => onSelect(type)}
             key={type}
           >
-            {flightTypesOptions[type]}
+            {flightTypeNamesRus[type]}
           </li>
         );
       })}
