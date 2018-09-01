@@ -2,9 +2,13 @@ import React from 'react';
 
 export default function SelectFlightType({ selectedFlightType, onSelect }) {
   const flightTypes = ['arr', 'dep'];
+  const flightTypesOptions = {
+    'arr': 'Прилет',
+    'dep': 'Вылет'
+  }
 
   return (
-    <ul className="flightTypes">
+    <ul className="flight-types">
       {flightTypes.map(type => {
         return (
           <li
@@ -12,7 +16,7 @@ export default function SelectFlightType({ selectedFlightType, onSelect }) {
             onClick={() => onSelect(type)}
             key={type}
           >
-            {type}
+            {flightTypesOptions[type]}
           </li>
         );
       })}
