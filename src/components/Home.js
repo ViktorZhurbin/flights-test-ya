@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
-import { getArrivals, formatDate, getStartHour } from '../utils/api';
+import { getArrivals } from '../utils/api';
+import { getCurrentHour, formatTodaysDate } from '../utils/helpers'
+
 import SelectFlightType from './SelectFlightType';
 import FlightGrid from './FlightGrid';
 import Loading from './Loading';
@@ -22,8 +24,8 @@ class Home extends Component {
 
   updateFlightType = async (flightType) => {
     const { airport } = this.state;
-    const date = formatDate();
-    const startHour = getStartHour();
+    const date = formatTodaysDate();
+    const startHour = getCurrentHour();
     this.setState(() => ({
       flightType,
       flights: null,

@@ -11,24 +11,4 @@ const getArrivals = async (airport, date, startHour) => {
   return response.json();
 }
 
-const formatDate = () => {
-  const date = new Date();
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
-
-  return `${year}/${month}/${day}`;
-}
-
-const getStartHour = () => {
-  const date = new Date();
-
-  return date.getHours();
-}
-
-const getFlightTime = (date) => {
-  const re = /(?<=T)[\w+.-][^:]*:[^:]*/;
-  return re.exec(date)[0]
-}
-
-export { getArrivals, formatDate, getStartHour, getFlightTime }
+export { getArrivals }
