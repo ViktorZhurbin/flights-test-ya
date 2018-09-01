@@ -4,6 +4,21 @@ body {
   font-family: sans-serif;
 }
 
+li {
+  list-style-type: none;
+}
+
+.flight-types {
+  display: flex;
+  justify-content: center;
+}
+
+.flight-types li {
+  margin: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
 .flight-table {
   width: 80%;
   margin: 0 30px;
