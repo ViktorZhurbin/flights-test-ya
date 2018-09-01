@@ -35,21 +35,24 @@ li {
 }
 
 .flight-row__time {
-  margin-right: 50px;
+  width: calc(20%);
 }
 
-.flight-row__destination {
-  margin-right: 100px;
+.flight-row__city {
+  width: calc(40%);
 
 }
 
 .flight-row__airline {
   display: flex;
-  min-width: 125px;
-  width: 125px;
-  margin-right: 100px;
+  width: calc(10%);
+
 }
 
 .flight-row__airline-name {
-  margin-right: 10px;
+  margin-right: 5px;
+}
+
+.flight-row__terminal {
+  width: 10%;
 }
