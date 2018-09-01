@@ -1,30 +1,38 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 
+import { getFlightTime } from '../utils/api';
+
 export default function FlightGrid({ flights, type }) {
   const { appendix, flightStatuses } = flights;
   const { airlines, airports, equipments } = appendix;
   return (
-    <table className="flight-table">
-      <thead>
-        <tr className="flight-table__header">
-          <th>Поиск</th>
-          <th>Сегодня</th>
-          <th>Время</th>
-          <th>Терминалы</th>
-        </tr>
-      </thead>
-      <tbody>
+    <div className="flight-table">
+      <div className="flight-table__header">
+        <span>Поиск</span>
+        <span>Сегодня</span>
+        <span>Время</span>
+        <span>Терминалы</span>
+      </div>
+      <div className="flight-table__body">
         {flightStatuses.map((flight, index) => {
           const {
             arrivalAirportFsCode,
             departureAirportFsCode,
-            departureDate: {
-              dateLocal: departureDateLocal,
-            },
-            arrivalDate: {
-              dateLocal: arrivalDateLocal,
-            },
+            operationalTimes: {
+              publishedDeparture: {
+                dateLocal: departureDateLocal,
+              },
+              publishedArrival: {
+                dateLocal: arrivalDateLocal,
+              },
+              actualRunwayArrival: {
+                dateLocal: actualArrivalDateLocal = '',
+              } = {},
+              actualRunwayDeparture: {
+                dateLocal: actualDepartureDateLocal = '',
+              } = {},
+            } = {},
             carrierFsCode,
             flightNumber,
             airportResources: {
@@ -32,21 +40,23 @@ export default function FlightGrid({ flights, type }) {
               departureTerminal = '-',
             } = {},
           } = flight;
+
           return (
 
-            <tr key={flightNumber} className="flight-row">
-              <td className="flight-row__time">{(type === 'arr' ? arrivalDateLocal : departureDateLocal)}</td>
-              <td className="flight-row__destination">{type === 'arr' ? arrivalAirportFsCode : departureAirportFsCode}</td>
-              <td className="flight-row__airline">
+            <div key={flightNumber} className="flight-row">
+              <div className="flight-row__time">{(type === 'arr' ? actualArrivalDateLocal : actualDepartureDateLocal)}</div>
+              <div className="flight-row__time">{(type === 'arr' ? arrivalDateLocal : departureDateLocal)}</div>
+              <div className="flight-row__destination">{type === 'arr' ? arrivalAirportFsCode : departureAirportFsCode}</div>
+              <div className="flight-row__airline">
                 <span className="flight-row__airline-name">{carrierFsCode}</span>
                 <span className="flight-row__airline-flight-number">{flightNumber}</span>
-              </td>
-              <td className="flight-row__terminal">{type === 'arr' ? arrivalTerminal : departureTerminal}</td>
-            </tr>
+              </div>
+              <div className="flight-row__terminal">{type === 'arr' ? arrivalTerminal : departureTerminal}</div>
+            </div>
           );
         })}
-      </tbody>
-    </table>
+      </div>
+    </div>
   );
 }
 
