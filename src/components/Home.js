@@ -14,40 +14,40 @@ import mockDepartures from '../utils/mockDepartures';
 
 class Home extends Component {
   state = {
-    flightType: null,
-    flights: null,
+    queryType: flightType.ARRIVAL,
+    flights: mockArrivals,
     airport: 'SVO',
     date: null,
     startHour: null,
   }
 
   componentDidMount() {
-    this.updateFlightType('arr')
+    this.updateFlights(this.state.queryType)
   }
 
-  updateFlightType = async (flightType) => {
-    const { airport } = this.state;
-    const date = formatTodaysDate();
-    const startHour = getCurrentHour();
-    this.setState(() => ({
-      flightType,
-      flights: null,
-    }));
-
+  updateFlights = /* async */ (type) => {
+    // const date = formatTodaysDate();
+    // const startHour = getCurrentHour();
+    const { ARRIVAL } = flightType;
+    const flights = type === ARRIVAL ? mockArrivals : mockDepartures;
     // const flights = await getArrivals(airport, date, startHour);
-    this.setState(() => ({ flights: mockData }));
+    this.setState({
+      queryType: type,
+      flights,
+    });
   }
-
 
   render() {
-    const { flightType, flights } = this.state;
+    const { queryType, flights } = this.state;
+    console.log("STATE: " + queryType);
+    console.log("TYPE: " + flights.request.type);
     return (
       <div>
         <SelectFlightType
-          selectedFlightType={flightType}
-          onSelect={this.updateFlightType}
+          selectedFlightType={queryType}
+          onSelect={this.updateFlights}
         />
-        {!flights ? <Loading /> : <FlightGrid flights={flights} type={flightType} />}
+        {!flights ? <Loading /> : <FlightGrid flights={flights} type={queryType} />}
       </div>
     );
   }
