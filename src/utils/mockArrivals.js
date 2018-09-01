@@ -1,5 +1,6 @@
 export default {
   "request": {
+    "type": "arr",
     "airport": {
       "requestedCode": "SVO",
       "airport": {
