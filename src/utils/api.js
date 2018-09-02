@@ -7,25 +7,38 @@ import { getCurrentHour, formatApiResponse, formatTodaysDate } from './helpers';
 
 const ID = 'a649e1cf';
 const KEY = 'c23b5427e41493f54c7f151a0e10e0b2';
-const baseUrl = 'https://api.flightstats.com/flex/flightstatus/rest/v2/json/airport/status/SVO'
-const params = `?appId=${ID}&appKey=${KEY}&utc=false&numHours=2&maxFlights=40&extendedOptions=useInlinedReferences`;
+const baseUrl = 'https://api.flightstats.com/flex/flightstatus/rest/v2/json'
+
+const commonParams = `?appId=${ID}&appKey=${KEY}`;
+const airportParams = `&utc=false&numHours=2&maxFlights=`;
 
 const handleError = error => {
   console.warn(error);
   return null;
 };
 
-const fetchData = async (
-  type = flightType.ARRIVAL,
+// const fetchByFlightNumber = async (flightNumber) => {
+//   const encodedURI = window.encodeURI(
+//     `https://cors-anywhere.herokuapp.com/${baseUrl}/flight/status/${flightNumber}/${commonParams}&extendedOptions=useInlinedReferences`
+//   );
+//   const response = await axios.get(encodedURI).catch(handleError);
+
+//   return formatApiResponse(response.data);
+// }
+
+const fetchFlightsByAirport = async (
+  queryType = flightType.ARRIVAL,
+  numFlights = '40',
+  airportCode = 'SVO',
   date = formatTodaysDate(),
   startHour = getCurrentHour()
 ) => {
   const mockData =
-    (type === flightType.ARRIVAL
+    (queryType === flightType.ARRIVAL
       ? mockArrivals
       : mockDepartures);
   const encodedURI = window.encodeURI(
-    `https://cors-anywhere.herokuapp.com/${baseUrl}/${type}/${date}/${startHour}${params}`
+    `https://cors-anywhere.herokuapp.com/${baseUrl}/airport/status/${airportCode}/${queryType}/${date}/${startHour}${commonParams}${airportParams}${numFlights}&extendedOptions=useInlinedReferences`
   );
   const response = await axios.get(encodedURI).catch(handleError);
   const flights = response ? response.data : mockData;
@@ -33,4 +46,4 @@ const fetchData = async (
   return formatApiResponse(flights);
 }
 
-export { fetchData }
+export { fetchFlightsByAirport }
