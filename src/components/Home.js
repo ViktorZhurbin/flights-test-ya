@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 
-import { getArrivals } from '../utils/api';
-import { getCurrentHour, formatTodaysDate } from '../utils/helpers'
+// import { getArrivals } from '../utils/api';
 import { flightType } from '../constants';
-
 
 import SelectFlightType from './SelectFlightType';
 import FlightGrid from './FlightGrid';
@@ -16,6 +14,7 @@ class Home extends Component {
   state = {
     queryType: flightType.ARRIVAL,
     flights: mockArrivals,
+    searchQuery: null,
     airport: 'SVO',
     date: null,
     startHour: null,
@@ -25,7 +24,7 @@ class Home extends Component {
     this.updateFlights(this.state.queryType)
   }
 
-  updateFlights = /* async */ (type) => {
+  updateFlights = (type) => {
     // const date = formatTodaysDate();
     // const startHour = getCurrentHour();
     const { ARRIVAL } = flightType;
@@ -55,10 +54,11 @@ class Home extends Component {
       }
     })
   }
+
   render() {
     const { queryType, flights } = this.state;
-    console.log("STATE: " + queryType);
-    console.log("TYPE: " + flights.request.type);
+    // console.log("STATE: " + queryType);
+    // console.log("TYPE: " + flights.request.type);
     return (
       <div className="home-page" >
         <SelectFlightType
