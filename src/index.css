@@ -38,8 +38,13 @@ li {
   border-bottom: 1px solid black;
 }
 
-.flight-row__time {
+.flight-row__time-new {
   width: calc(20%);
+}
+
+.flight-row__time-old {
+  width: calc(10%);
+  font-size: 12px;
 }
 
 .flight-row__city {

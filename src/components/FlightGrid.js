@@ -38,14 +38,14 @@ export default function FlightGrid({ flights, type }) {
           return (
 
             <div key={flightNumber} className="flight-row">
-              <div className="flight-row__time">
+              <div className="flight-row__time-old">
                 {
                   type === ARRIVAL
                     ? getTimeFromIsoString(actualArrivalDateLocal)
                     : getTimeFromIsoString(actualDepartureDateLocal)
                 }
               </div>
-              <div className="flight-row__time">
+              <div className="flight-row__time-new">
                 {
                   type === ARRIVAL
                     ? getTimeFromIsoString(arrivalDateLocal)

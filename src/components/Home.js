@@ -12,8 +12,8 @@ import mockDepartures from '../utils/mockDepartures';
 
 class Home extends Component {
   state = {
-    queryType: flightType.ARRIVAL,
-    flights: mockArrivals,
+    queryType: flightType.DEPARTURE,
+    flights: null,
     searchQuery: null,
     airport: 'SVO',
     date: null,
