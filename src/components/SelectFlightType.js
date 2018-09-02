@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { flightTypeNamesRus } from '../constants';
 
-export default function SelectFlightType({ selectedFlightType, onSelect }) {
+function SelectFlightType({ selectedFlightType, onSelect }) {
   const flightTypes = Object.keys(flightTypeNamesRus);
 
   return (
@@ -21,3 +22,10 @@ export default function SelectFlightType({ selectedFlightType, onSelect }) {
     </ul>
   );
 }
+
+SelectFlightType.propTypes = {
+  selectedFlightType: PropTypes.string.isRequired,
+  onSelect: PropTypes.func.isRequired,
+}
+
+export default SelectFlightType

@@ -1,5 +1,5 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 import { flightType } from '../constants';
 
@@ -80,6 +80,7 @@ export default function FlightGrid({ flights, type }) {
   );
 }
 
-// FlightGrid.propTypes = {
-//   flightStatuses: PropTypes.array.isRequired,
-// };
+FlightGrid.propTypes = {
+  flights: PropTypes.array.isRequired,
+  type: PropTypes.string.isRequired,
+};
