@@ -23,41 +23,54 @@ export default function FlightGrid({ flights, type }) {
           return (
 
             <div key={flightNumber} className="flight-row">
-              <div className="flight-row__time-old">
-                {
-                  type === ARRIVAL
-                    ? arrivalTime['actual']
-                    : departureTime['actual']
-                }
+              <div className="flight-row__block1">
+                <div
+                  className={
+                    `flight-row__time-new
+                  ${
+                    type === ARRIVAL
+                      ? `${arrivalTime['old'] ? 'changed' : ''}`
+                      : `${departureTime['old'] ? 'changed' : ''}`
+                    }`
+                  }
+                >
+                  {
+                    type === ARRIVAL
+                      ? arrivalTime['new']
+                      : departureTime['new']
+                  }
+                  <div className="flight-row__time-old">
+                    {
+                      type === ARRIVAL
+                        ? arrivalTime['old']
+                        : departureTime['old']
+                    }
+                  </div>
+                </div>
+                <div className="flight-row__city">
+                  {
+                    type === ARRIVAL
+                      ? departureCity
+                      : arrivalCity
+                  }
+                </div>
               </div>
-              <div className="flight-row__time-new">
-                {
-                  type === ARRIVAL
-                    ? (arrivalTime['planned'] || null)
-                    : (departureTime['planned'] || null)
-                }
-              </div>
-              <div className="flight-row__city">
-                {
-                  type === ARRIVAL
-                    ? departureCity
-                    : arrivalCity
-                }
-              </div>
-              <div className="flight-row__airline">
-                <span className="flight-row__airline-name">
-                  {carrierCode}
-                </span>
-                <span className="flight-row__airline-flight-number">
-                  {flightNumber}
-                </span>
-              </div>
-              <div className="flight-row__terminal">
-                {
-                  type === ARRIVAL
-                    ? (arrivalTerminal || '-')
-                    : (departureTerminal || '-')
-                }
+              <div className="flight-row__block2">
+                <div className="flight-row__airline">
+                  <span className="flight-row__airline-name">
+                    {carrierCode}
+                  </span>
+                  <span className="flight-row__airline-flight-number">
+                    {flightNumber}
+                  </span>
+                  <div className="flight-row__terminal">
+                    {
+                      type === ARRIVAL
+                        ? (arrivalTerminal || '-')
+                        : (departureTerminal || '-')
+                    }
+                  </div>
+                </div>
               </div>
             </div>
           );
