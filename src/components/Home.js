@@ -40,18 +40,20 @@ class Home extends Component {
     this.setState({
       searchQuery: this.search.value,
     }, () => {
-      if (this.state.searchQuery) {
-        const { searchQuery, queryType } = this.state;
-        const { ARRIVAL } = flightType;
-        const flights = queryType === ARRIVAL ? mockArrivals : mockDepartures;
-        console.log(flights);
-        const filterResult = flights.filter(flight =>
+      let filterResult;
+      const { searchQuery, queryType } = this.state;
+      const { ARRIVAL } = flightType;
+      const flights = queryType === ARRIVAL ? mockArrivals : mockDepartures;
+      if (searchQuery) {
+        filterResult = flights.filter(flight =>
           String(flight['flightNumber']).includes(searchQuery)
         );
-        this.setState({
-          flights: filterResult,
-        });
+      } else {
+        filterResult = flights;
       }
+      this.setState({
+        flights: filterResult,
+      });
     })
   }
 
