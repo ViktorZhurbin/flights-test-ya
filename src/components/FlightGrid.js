@@ -5,8 +5,6 @@ import { getTimeFromIsoString } from '../utils/helpers';
 import { flightType } from '../constants';
 
 export default function FlightGrid({ flights, type }) {
-
-  const { flightStatuses } = flights;
   const { ARRIVAL } = flightType;
   return (
     <div className="flight-table">
@@ -17,7 +15,7 @@ export default function FlightGrid({ flights, type }) {
         <span>Терминалы</span>
       </div>
       <div className="flight-table__body">
-        {flightStatuses.map((flight) => {
+        {flights.map((flight) => {
           const {
             arrivalAirport,
             departureAirport,

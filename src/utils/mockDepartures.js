@@ -1,4 +1,4 @@
-export default {
+const mockDeparturesRes = {
   "request": {
     "type": "dep",
     "airport": {
@@ -2853,3 +2853,7 @@ export default {
     }
   ]
 }
+
+const { flightStatuses: mockDepartures } = mockDeparturesRes;
+
+export default mockDepartures;
