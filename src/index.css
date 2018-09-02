@@ -16,12 +16,18 @@ li {
 .flight-types {
   display: flex;
   justify-content: center;
+  margin: 20px 10px;
+  font-weight: 700;
+  font-size: 30px;
 }
 
-.flight-types li {
-  margin: 10px;
-  font-weight: bold;
+.flight-types span {
   cursor: pointer;
+
+}
+
+.flight-types span:not(:last-child) {
+  margin-right: 20px;
 }
 
 .home-page {
@@ -33,7 +39,8 @@ li {
 }
 
 .search {
-  width: calc(60%);
+  min-width: 170px;
+  width: calc(20%);
 }
 
 .flight-row {
@@ -115,6 +122,10 @@ li {
 }
 
 @media (max-width: 425px) {
+  .home-page {
+    margin: 0 40px;
+  }
+
   .flight-row {
     flex-wrap: wrap;
   }

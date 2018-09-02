@@ -7,17 +7,17 @@ function SelectFlightType({ selectedFlightType, onSelect }) {
   const flightTypes = Object.keys(flightTypeNamesRus);
 
   return (
-    <ul className="flight-types">
+    <div className="flight-types">
       {flightTypes.map(type => (
-        <li
-          style={type === selectedFlightType ? { color: '#d0021b' } : null}
+        <span
+          style={type === selectedFlightType ? { color: '#ffac02' } : null}
           onClick={() => onSelect(type)}
           key={type}
         >
           {flightTypeNamesRus[type]}
-        </li>
+        </span>
       ))}
-    </ul>
+    </div>
   );
 }
 
