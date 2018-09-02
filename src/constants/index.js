@@ -4,6 +4,6 @@ export const flightType = {
 }
 
 export const flightTypeNamesRus = {
-  [flightType.ARRIVAL]: 'Прилет',
+  [flightType.ARRIVAL]: 'Прилёт',
   [flightType.DEPARTURE]: 'Вылет',
 }
