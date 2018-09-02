@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 import mockArrivals from "./mockArrivals";
 import mockDepartures from "./mockDepartures";
 import { flightType } from '../constants';
@@ -23,10 +25,10 @@ const fetchData = async (
       ? mockArrivals
       : mockDepartures);
   const encodedURI = window.encodeURI(
-    `${baseUrl}/${type}/${date}/${startHour}${params}`
+    `https://cors-anywhere.herokuapp.com/${baseUrl}/${type}/${date}/${startHour}${params}`
   );
-  const response = await fetch(encodedURI).catch(handleError);
-  const flights = response ? response.json() : mockData;
+  const response = await axios.get(encodedURI).catch(handleError);
+  const flights = response ? response.data : mockData;
 
   return formatApiResponse(flights);
 }

@@ -37,15 +37,12 @@ class Home extends Component {
     });
   }
 
-  filterByFlightNumber = async () => {
-    console.log('Filtering');
+  filterByFlightNumber = () => {
     this.setState({
       searchQuery: this.search.value,
-    }, () => {
+    }, async () => {
       const { searchQuery, queryType } = this.state;
-      const { ARRIVAL } = flightType;
-      // const flights = queryType === ARRIVAL ? mockArrivals : mockDepartures;
-      const flights = fetchData(queryType);
+      const flights = await fetchData(queryType);
       let filterResult;
       if (searchQuery) {
         filterResult = flights.filter(flight =>
