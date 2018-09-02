@@ -8,12 +8,6 @@ export default function FlightGrid({ flights, type }) {
   const { ARRIVAL } = flightType;
   return (
     <div className="flight-table">
-      <div className="flight-table__header">
-        <span>Поиск</span>
-        <span>Сегодня</span>
-        <span>Время</span>
-        <span>Терминалы</span>
-      </div>
       <div className="flight-table__body">
         {flights.map((flight) => {
           const {

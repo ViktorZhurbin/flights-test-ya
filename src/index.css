@@ -19,13 +19,17 @@ li {
   cursor: pointer;
 }
 
-.flight-table {
+.home-page {
   width: 80%;
   margin: 0 30px;
 }
 
 .flight-table__header {
   display: flex;
+}
+
+.search {
+  width: calc(60%);
 }
 
 .flight-row {
