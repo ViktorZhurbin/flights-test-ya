@@ -14,8 +14,9 @@ const getTimeFromIsoString = (isoDate) => {
   const date = new Date(isoDate);
   const hours = date.getHours();
   const minutes = date.getMinutes();
+  const addLeadingZero = (num) => num < 10 ? `0${num}` : num;
 
-  return `${hours}:${minutes < 10 ? `0${minutes}` : minutes}`;
+  return `${addLeadingZero(hours)}:${addLeadingZero(minutes)}`;
 }
 
 const formatApiResponse = (res) => {
@@ -61,14 +62,18 @@ const formatApiResponse = (res) => {
     newFlight['arrivalTerminal'] = arrivalTerminal;
     newFlight['departureTerminal'] = departureTerminal;
 
-    newFlight.arrivalTime = {
-      planned: getTimeFromIsoString(plannedArrivalDateLocal),
-      actual: getTimeFromIsoString(actualArrivalDateLocal),
+    const plannedArrivalTime = getTimeFromIsoString(plannedArrivalDateLocal);
+    const actualArrivalTime = getTimeFromIsoString(actualArrivalDateLocal);
+    newFlight['arrivalTime'] = {
+      old: (actualArrivalTime ? plannedArrivalTime : actualArrivalTime),
+      new: (actualArrivalTime ? actualArrivalTime : plannedArrivalTime),
     }
 
-    newFlight.departureTime = {
-      planned: getTimeFromIsoString(plannedDepartureDateLocal),
-      actual: getTimeFromIsoString(actualDepartureDateLocal),
+    const plannedDepartureTime = getTimeFromIsoString(plannedDepartureDateLocal);
+    const actualDepartureTime = getTimeFromIsoString(actualDepartureDateLocal);
+    newFlight['departureTime'] = {
+      old: (actualDepartureTime ? plannedDepartureTime : actualDepartureTime),
+      new: (actualDepartureTime ? actualDepartureTime : plannedDepartureTime),
     }
 
     return newFlight;
