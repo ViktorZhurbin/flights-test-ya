@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 import { flightType } from '../constants';
 import { fetchFlightsByAirport } from '../utils/api';
-
 import {
   SelectFlightType,
   FlightGrid,
@@ -40,8 +39,7 @@ class Home extends Component {
       searchQuery,
       loading: true,
     }, async () => {
-      const { queryType } = this.state;
-      const flights = await fetchFlightsByAirport(queryType);
+      const flights = await fetchFlightsByAirport(this.state.queryType);
       const filterResult = searchQuery
         ? flights.filter(flight =>
           String(flight['flightNumber']).includes(searchQuery)

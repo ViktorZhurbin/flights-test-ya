@@ -8,6 +8,7 @@ import { getCurrentHour, formatApiResponse, formatTodaysDate } from './helpers';
 const ID = 'a649e1cf';
 const KEY = 'c23b5427e41493f54c7f151a0e10e0b2';
 const baseUrl = 'https://api.flightstats.com/flex/flightstatus/rest/v2/json'
+const corsAnywhere = 'https://cors-anywhere.herokuapp.com';
 
 const commonParams = `?appId=${ID}&appKey=${KEY}`;
 const airportParams = `&utc=false&numHours=2&maxFlights=`;
@@ -38,7 +39,7 @@ const fetchFlightsByAirport = async (
       ? mockArrivals
       : mockDepartures);
   const encodedURI = window.encodeURI(
-    `https://cors-anywhere.herokuapp.com/${baseUrl}/airport/status/${airportCode}/${queryType}/${date}/${startHour}${commonParams}${airportParams}${numFlights}&extendedOptions=useInlinedReferences`
+    `${corsAnywhere}/${baseUrl}/airport/status/${airportCode}/${queryType}/${date}/${startHour}${commonParams}${airportParams}${numFlights}&extendedOptions=useInlinedReferences`
   );
   const response = await axios.get(encodedURI).catch(handleError);
   const flights = response ? response.data : mockData;
