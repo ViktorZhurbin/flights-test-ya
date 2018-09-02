@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { flightType } from '../constants';
 
-export default function FlightGrid({ flights, type }) {
+function FlightGrid({ flights, type }) {
   const { ARRIVAL } = flightType;
   return (
     <div className="flight-table">
@@ -21,7 +21,6 @@ export default function FlightGrid({ flights, type }) {
           } = flight;
 
           return (
-
             <div key={`${carrierCode}${flightNumber}`} className="flight-row">
               <div className="flight-row__block1">
                 <div
@@ -84,3 +83,5 @@ FlightGrid.propTypes = {
   flights: PropTypes.array.isRequired,
   type: PropTypes.string.isRequired,
 };
+
+export default FlightGrid;

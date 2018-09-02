@@ -1,13 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const styles = {
-  content: {
-    textAlign: 'center',
-    fontSize: '35px',
-  },
-};
-
 class Loading extends React.Component {
   state = {
     text: this.props.text,
@@ -28,7 +21,7 @@ class Loading extends React.Component {
   }
 
   render() {
-    return <p style={styles.content}>{this.state.text}</p>;
+    return <p className="loader">{this.state.text}</p>;
   }
 }
 

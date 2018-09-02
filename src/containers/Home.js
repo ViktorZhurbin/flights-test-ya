@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 
 import { flightType } from '../constants';
-import { fetchData } from '../utils/api';
+import { fetchFlightsByAirport } from '../utils/api';
 
-import SelectFlightType from './SelectFlightType';
-import FlightGrid from './FlightGrid';
-import Loading from './Loading';
+import SelectFlightType from '../components/SelectFlightType';
+import FlightGrid from '../components/FlightGrid';
+import Loading from '../components/Loading';
 
 class Home extends Component {
   state = {
-    queryType: flightType.DEPARTURE,
+    queryType: flightType.ARRIVAL,
     flights: null,
     searchQuery: null,
     airport: 'SVO',
@@ -22,7 +22,7 @@ class Home extends Component {
   }
 
   updateFlights = async (type) => {
-    const flights = await fetchData(type);
+    const flights = await fetchFlightsByAirport(type);
     this.setState({
       queryType: type,
       flights,
@@ -34,15 +34,12 @@ class Home extends Component {
       searchQuery: this.search.value,
     }, async () => {
       const { searchQuery, queryType } = this.state;
-      const flights = await fetchData(queryType);
-      let filterResult;
-      if (searchQuery) {
-        filterResult = flights.filter(flight =>
+      const flights = await fetchFlightsByAirport(queryType);
+      const filterResult = searchQuery
+        ? flights.filter(flight =>
           String(flight['flightNumber']).includes(searchQuery)
-        );
-      } else {
-        filterResult = flights;
-      }
+        )
+        : flights;
       this.setState({
         flights: filterResult,
       });
