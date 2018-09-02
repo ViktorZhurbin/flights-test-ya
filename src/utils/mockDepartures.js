@@ -2854,6 +2854,6 @@ const mockDeparturesRes = {
   ]
 }
 
-const { flightStatuses: mockDepartures } = mockDeparturesRes;
+// const { flightStatuses: mockDepartures } = mockDeparturesRes;
 
-export default mockDepartures;
+export default mockDeparturesRes;

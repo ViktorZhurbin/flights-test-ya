@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 
-// import { getArrivals } from '../utils/api';
 import { flightType } from '../constants';
+import { fetchData } from '../utils/api';
+import mockArrivals from '../utils/mockArrivals';
+import mockDepartures from '../utils/mockDepartures';
 
 import SelectFlightType from './SelectFlightType';
 import FlightGrid from './FlightGrid';
 import Loading from './Loading';
-
-import mockArrivals from '../utils/mockArrivals';
-import mockDepartures from '../utils/mockDepartures';
 
 class Home extends Component {
   state = {
@@ -24,26 +23,30 @@ class Home extends Component {
     this.updateFlights(this.state.queryType)
   }
 
-  updateFlights = (type) => {
+  updateFlights = async (type) => {
+    console.log('Updating');
     // const date = formatTodaysDate();
     // const startHour = getCurrentHour();
-    const { ARRIVAL } = flightType;
-    const flights = type === ARRIVAL ? mockArrivals : mockDepartures;
-    // const flights = await getArrivals(airport, date, startHour);
+    // const { ARRIVAL } = flightType;
+    // const flights = type === ARRIVAL ? mockArrivals : mockDepartures;
+    // const { queryType } = this.state;
+    const flights = await fetchData(type);
     this.setState({
       queryType: type,
       flights,
     });
   }
 
-  filterByFlightNumber = () => {
+  filterByFlightNumber = async () => {
+    console.log('Filtering');
     this.setState({
       searchQuery: this.search.value,
     }, () => {
-      let filterResult;
       const { searchQuery, queryType } = this.state;
       const { ARRIVAL } = flightType;
-      const flights = queryType === ARRIVAL ? mockArrivals : mockDepartures;
+      // const flights = queryType === ARRIVAL ? mockArrivals : mockDepartures;
+      const flights = fetchData(queryType);
+      let filterResult;
       if (searchQuery) {
         filterResult = flights.filter(flight =>
           String(flight['flightNumber']).includes(searchQuery)
@@ -59,8 +62,8 @@ class Home extends Component {
 
   render() {
     const { queryType, flights } = this.state;
-    // console.log("STATE: " + queryType);
-    // console.log("TYPE: " + flights.request.type);
+    console.log("STATE: " + queryType);
+    console.log(flights);
     return (
       <div className="home-page" >
         <SelectFlightType
