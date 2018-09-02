@@ -9,14 +9,13 @@ import {
   Loading,
   SearchBar,
 } from '../components';
-// import FlightGrid from '../components/FlightGrid';
-// import Loading from '../components/Loading';
 
 class Home extends Component {
   state = {
     queryType: flightType.ARRIVAL,
     flights: null,
     searchQuery: '',
+    loading: true,
     airport: 'SVO',
     date: null,
     startHour: null,
@@ -31,6 +30,7 @@ class Home extends Component {
     this.setState({
       queryType: type,
       flights,
+      loading: false,
     });
   }
 
@@ -38,6 +38,7 @@ class Home extends Component {
     const searchQuery = e.target.value;
     this.setState({
       searchQuery,
+      loading: true,
     }, async () => {
       const { queryType } = this.state;
       const flights = await fetchFlightsByAirport(queryType);
@@ -48,12 +49,13 @@ class Home extends Component {
         : flights;
       this.setState({
         flights: filterResult,
+        loading: false,
       });
     })
   }
 
   render() {
-    const { queryType, flights, searchQuery } = this.state;
+    const { queryType, flights, searchQuery, loading } = this.state;
     return (
       <div className="home-page" >
         <SelectFlightType
@@ -64,7 +66,13 @@ class Home extends Component {
           value={searchQuery}
           onSelect={e => this.onFilterByFlight(e)}
         />
-        {!flights ? <Loading /> : <FlightGrid flights={flights} type={queryType} />}
+        {loading
+          ? <Loading />
+          : <FlightGrid
+            flights={flights}
+            type={queryType}
+          />
+        }
       </div>
     );
   }
