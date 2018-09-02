@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 
 import { flightType } from '../constants';
 import { fetchData } from '../utils/api';
-import mockArrivals from '../utils/mockArrivals';
-import mockDepartures from '../utils/mockDepartures';
 
 import SelectFlightType from './SelectFlightType';
 import FlightGrid from './FlightGrid';
@@ -24,12 +22,6 @@ class Home extends Component {
   }
 
   updateFlights = async (type) => {
-    console.log('Updating');
-    // const date = formatTodaysDate();
-    // const startHour = getCurrentHour();
-    // const { ARRIVAL } = flightType;
-    // const flights = type === ARRIVAL ? mockArrivals : mockDepartures;
-    // const { queryType } = this.state;
     const flights = await fetchData(type);
     this.setState({
       queryType: type,
@@ -59,8 +51,6 @@ class Home extends Component {
 
   render() {
     const { queryType, flights } = this.state;
-    console.log("STATE: " + queryType);
-    console.log(flights);
     return (
       <div className="home-page" >
         <SelectFlightType

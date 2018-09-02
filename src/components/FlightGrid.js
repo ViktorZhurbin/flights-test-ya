@@ -22,12 +22,12 @@ export default function FlightGrid({ flights, type }) {
 
           return (
 
-            <div key={flightNumber} className="flight-row">
+            <div key={`${carrierCode}${flightNumber}`} className="flight-row">
               <div className="flight-row__block1">
                 <div
                   className={
                     `flight-row__time-new
-                  ${
+              ${
                     type === ARRIVAL
                       ? `${arrivalTime['old'] ? 'changed' : ''}`
                       : `${departureTime['old'] ? 'changed' : ''}`
