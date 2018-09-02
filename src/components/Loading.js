@@ -3,15 +3,16 @@ import PropTypes from 'prop-types';
 
 class Loading extends React.Component {
   state = {
-    text: this.props.text,
+    text: this.props.newText,
   };
 
   componentDidMount() {
-    const { text, speed } = this.props;
-    const stopper = `${text}...`;
+    const { newText, speed } = this.props;
+    const { text } = this.state;
+    const stopper = `${newText}...`;
     this.interval = window.setInterval(() => {
-      this.state.text === stopper
-        ? this.setState(() => ({ text }))
+      text === stopper
+        ? this.setState(() => ({ text: newText }))
         : this.setState(prevState => ({ text: `${prevState.text}.` }));
     }, speed);
   }
@@ -21,17 +22,18 @@ class Loading extends React.Component {
   }
 
   render() {
-    return <p className="loader">{this.state.text}</p>;
+    const { text } = this.state;
+    return <p className="loader">{text}</p>;
   }
 }
 
 Loading.propTypes = {
-  text: PropTypes.string,
+  newText: PropTypes.string,
   speed: PropTypes.number,
-}
+};
 
 Loading.defaultProps = {
-  text: 'Загрузка',
+  newText: 'Загрузка',
   speed: 300,
 };
 

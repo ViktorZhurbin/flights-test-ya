@@ -21,7 +21,8 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    this.updateFlights(this.state.queryType)
+    const { queryType } = this.state;
+    this.updateFlights(queryType);
   }
 
   updateFlights = async (type) => {
@@ -39,7 +40,8 @@ class Home extends Component {
       searchQuery,
       loading: true,
     }, async () => {
-      const flights = await fetchFlightsByAirport(this.state.queryType);
+      const { queryType } = this.state;
+      const flights = await fetchFlightsByAirport(queryType);
       const filterResult = searchQuery
         ? flights.filter(flight =>
           String(flight['flightNumber']).includes(searchQuery)
@@ -49,13 +51,13 @@ class Home extends Component {
         flights: filterResult,
         loading: false,
       });
-    })
+    });
   }
 
   render() {
     const { queryType, flights, searchQuery, loading } = this.state;
     return (
-      <div className="home-page" >
+      <div className="home-page">
         <SelectFlightType
           selectedFlightType={queryType}
           onSelect={this.updateFlights}
@@ -66,10 +68,12 @@ class Home extends Component {
         />
         {loading
           ? <Loading />
-          : <FlightGrid
-            flights={flights}
-            type={queryType}
-          />
+          : (
+            <FlightGrid
+              flights={flights}
+              type={queryType}
+            />
+          )
         }
       </div>
     );

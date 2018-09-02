@@ -14,8 +14,8 @@ function SearchBar({ searchQuery, onSelect }) {
 }
 
 SearchBar.propTypes = {
-  value: PropTypes.string,
+  searchQuery: PropTypes.string,
   onSelect: PropTypes.func.isRequired,
-}
+};
 
 export default SearchBar;

@@ -28,21 +28,21 @@ function FlightGrid({ flights, type }) {
                     `flight-row__time-new
               ${
                     type === ARRIVAL
-                      ? `${arrivalTime['old'] ? 'changed' : ''}`
-                      : `${departureTime['old'] ? 'changed' : ''}`
+                      ? `${arrivalTime.old ? 'changed' : ''}`
+                      : `${departureTime.old ? 'changed' : ''}`
                     }`
                   }
                 >
                   {
                     type === ARRIVAL
-                      ? arrivalTime['new']
-                      : departureTime['new']
+                      ? arrivalTime.new
+                      : departureTime.new
                   }
                   <div className="flight-row__time-old">
                     {
                       type === ARRIVAL
-                        ? arrivalTime['old']
-                        : departureTime['old']
+                        ? arrivalTime.old
+                        : departureTime.old
                     }
                   </div>
                 </div>
@@ -80,7 +80,7 @@ function FlightGrid({ flights, type }) {
 }
 
 FlightGrid.propTypes = {
-  flights: PropTypes.array.isRequired,
+  flights: PropTypes.arrayOf(PropTypes.object).isRequired,
   type: PropTypes.string.isRequired,
 };
 

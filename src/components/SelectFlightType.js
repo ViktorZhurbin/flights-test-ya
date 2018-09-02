@@ -8,17 +8,15 @@ function SelectFlightType({ selectedFlightType, onSelect }) {
 
   return (
     <ul className="flight-types">
-      {flightTypes.map(type => {
-        return (
-          <li
-            style={type === selectedFlightType ? { color: '#d0021b' } : null}
-            onClick={() => onSelect(type)}
-            key={type}
-          >
-            {flightTypeNamesRus[type]}
-          </li>
-        );
-      })}
+      {flightTypes.map(type => (
+        <li
+          style={type === selectedFlightType ? { color: '#d0021b' } : null}
+          onClick={() => onSelect(type)}
+          key={type}
+        >
+          {flightTypeNamesRus[type]}
+        </li>
+      ))}
     </ul>
   );
 }
@@ -26,6 +24,6 @@ function SelectFlightType({ selectedFlightType, onSelect }) {
 SelectFlightType.propTypes = {
   selectedFlightType: PropTypes.string.isRequired,
   onSelect: PropTypes.func.isRequired,
-}
+};
 
-export default SelectFlightType
+export default SelectFlightType;
