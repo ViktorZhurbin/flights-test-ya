@@ -24,10 +24,18 @@ li {
 
 .flight-types span {
   cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 5px;
+  user-select: none;
 }
 
 .flight-types span:not(:last-child) {
   margin-right: 20px;
+}
+
+.selected-flight-type {
+  color: rgb(255, 172, 2);
+  background-color: beige;
 }
 
 .home-page {

@@ -10,7 +10,7 @@ function SelectFlightType({ selectedFlightType, onSelect }) {
     <div className="flight-types">
       {flightTypes.map(type => (
         <span
-          style={type === selectedFlightType ? { color: '#ffac02' } : null}
+          className={type === selectedFlightType ? 'selected-flight-type' : null}
           onClick={() => onSelect(type)}
           key={type}
         >
