@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { flightTypeNamesRus } from '../constants';
+import { flightTypeNames } from '../constants';
 
 function SelectFlightType({ selectedFlightType, onSelect }) {
-  const flightTypes = Object.keys(flightTypeNamesRus);
+  const flightTypes = Object.keys(flightTypeNames);
 
   return (
     <div className="flight-types">
@@ -14,7 +14,7 @@ function SelectFlightType({ selectedFlightType, onSelect }) {
           onClick={() => onSelect(type)}
           key={type}
         >
-          {flightTypeNamesRus[type]}
+          {flightTypeNames[type]}
         </span>
       ))}
     </div>

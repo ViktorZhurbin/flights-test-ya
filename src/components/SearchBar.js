@@ -7,14 +7,14 @@ function SearchBar({ searchQuery, onSelect }) {
       type="search"
       value={searchQuery}
       className="search"
-      placeholder="Поиск по номеру рейса"
+      placeholder="Search by flight no."
       onChange={onSelect}
     />
   );
 }
 
 SearchBar.propTypes = {
-  searchQuery: PropTypes.string,
+  searchQuery: PropTypes.string.isRequired,
   onSelect: PropTypes.func.isRequired,
 };
 
