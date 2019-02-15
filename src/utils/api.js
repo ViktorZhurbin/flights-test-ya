@@ -18,15 +18,6 @@ const handleError = (error) => {
   return null;
 };
 
-// const fetchByFlightNumber = async (flightNumber) => {
-//   const encodedURI = window.encodeURI(
-//     `https://cors-anywhere.herokuapp.com/${baseUrl}/flight/status/${flightNumber}/${commonParams}&extendedOptions=useInlinedReferences`
-//   );
-//   const response = await axios.get(encodedURI).catch(handleError);
-
-//   return formatApiResponse(response.data);
-// }
-
 const fetchFlightsByAirport = async (
   queryType = flightType.ARRIVAL,
   numFlights = '40',

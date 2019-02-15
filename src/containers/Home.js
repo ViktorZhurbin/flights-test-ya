@@ -15,9 +15,6 @@ class Home extends Component {
     flights: null,
     searchQuery: '',
     loading: true,
-    // airport: null,
-    // date: null,
-    // startHour: null,
   }
 
   componentDidMount() {
