@@ -40,8 +40,9 @@ const fetchFlightsByAirport = async (
   const encodedURI = window.encodeURI(
     `${corsAnywhere}/${baseUrl}/airport/status/${airportCode}/${queryType}/${date}/${startHour}${commonParams}${airportParams}${numFlights}&extendedOptions=useInlinedReferences`,
   );
-  const response = await axios.get(encodedURI).catch(handleError);
-  const flights = response ? response.data : mockData;
+  const { data } = await axios.get(encodedURI).catch(handleError);
+  const responseOK = data && data.flightStatuses.length > 0;
+  const flights = responseOK ? data : mockData;
 
   return formatApiResponse(flights);
 };
